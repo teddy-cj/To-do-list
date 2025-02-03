@@ -10,7 +10,7 @@ export default function LoginForm() {
         e.preventDefault();
     
         try {
-          const response = await fetch("https://to-do-list-4agj.onrender.com", {
+          const response = await fetch("http://localhost:5000/api/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -19,6 +19,7 @@ export default function LoginForm() {
           const data = await response.json();
           if (response.ok) {
             localStorage.setItem("token", data.token);
+            console.log("Token set:", data.token);
             alert("Login Successful!");
             navigate("/dashboard");
           } else {
